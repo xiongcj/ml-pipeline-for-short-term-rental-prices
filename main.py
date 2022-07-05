@@ -47,10 +47,11 @@ def go(config: DictConfig):
                     "artifact_description": "Raw_file_as_downloaded"
                 },
             )
-
+        basic_path = "C:/Users/xiong.chengjie/Documents/Courses/Udacity_MLDevOps/c2project/ml-pipeline-for-short-term-rental-prices/src/basic_cleaning"
         if "basic_cleaning" in active_steps:
             _ = mlflow.run(
-                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
+                f"{basic_path}",
+                # f"{config['main']['dc_repository']}",
                 # f"{config['main']['src_repository']}/basic_cleaning",
                 "main",
                 parameters={
@@ -60,7 +61,7 @@ def go(config: DictConfig):
                     "output_description": "Data_with_outliers_and_null_values_removed",
                     "min_price": config['etl']['min_price'],
                     "max_price": config['etl']['max_price']
-                },
+                }
             )
 
         if "data_check" in active_steps:
