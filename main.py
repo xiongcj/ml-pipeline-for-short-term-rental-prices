@@ -50,7 +50,8 @@ def go(config: DictConfig):
         basic_path = "C:/Users/xiong.chengjie/Documents/Courses/Udacity_MLDevOps/c2project/ml-pipeline-for-short-term-rental-prices/src/basic_cleaning"
         if "basic_cleaning" in active_steps:
             _ = mlflow.run(
-                f"{basic_path}",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
+                # f"{basic_path}",
                 # f"{config['main']['dc_repository']}",
                 # f"{config['main']['src_repository']}/basic_cleaning",
                 "main",
